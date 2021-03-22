@@ -1,0 +1,19 @@
+{
+  "name": "mariadb",
+  "version": "1.0.0",
+  "description": "this is create server project for chrono guardiens (3GCA capstone)",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/usoock-world/chrono-js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
