@@ -11,12 +11,19 @@ const connection = mysql.createConnection({
     user: 'admin',
     password: '3gca1901217',
     port: 3309,
+    // database: 'user'
 })
 
 app.get('/', (req, res) => {
     connection.connect((err) => {
         if (err) console.error(err);
-        else console.log('act!')
+    });
+    connection.query('SHOW DATABASES;', (err, result, fields) => {
+        if (err) {
+            console.error(err);
+        } else {
+            console.log(result);
+        }
     });
 
     connection.end();
