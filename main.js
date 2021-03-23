@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
     connection.connect((err) => {
         if (err) console.error(err);
     });
-    connection.query('SHOW DATABASES;', (err, result, fields) => {
+    connection.query('CREATE DATABASE log;', (err, result, fields) => {
         if (err) {
             console.error(err);
         } else {
