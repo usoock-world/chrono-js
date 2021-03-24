@@ -20,7 +20,6 @@ app.get('/', (req, res) => {
     });
 
     connection.end();
-    res.send('act!');
 })
 
 app.listen(PORT_NUMBER, () => {
