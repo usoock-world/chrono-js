@@ -14,7 +14,13 @@ const connection = mysql.createConnection({
     // database: 'user'
 })
 
+app.use(express.static(path.join(__dirname, '/static')));
+
 app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '/view/main.html'));
+})
+
+app.post('/query', (req, res) => {
     connection.connect((err) => {
         if (err) console.error(err);
     });
