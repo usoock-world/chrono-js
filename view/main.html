@@ -4,12 +4,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .wrap {
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+        }
+        input[type="text"] {
+            width: 700px;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            display: inline-block;
+            width: 700px;
+            padding: 6px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+        .output {
+            white-space: nowrap;
+        }
+    </style>
     <title>Mariad DB Query Test Page</title>
 </head>
 <body>
     <div class="wrap">
         <form id="submit-form">
-            <input type="text" id="submit-form-query" name="query">
+            <p class="output">>> outbput <br></p>
+            <input type="text" id="submit-form-query" name="query" autofocus>
+            <br>
+            <input type="submit" value="Submit">
         </form>
     </div>
 </body>

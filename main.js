@@ -6,14 +6,6 @@ const SERVER_CONFIG = require('./server-config.json')
 const PORT_NUMBER = SERVER_CONFIG['port-number'];
 const mysql = require('mysql');
 
-const connection = mysql.createConnection({
-    host: 'cg.crrlhtxhb1el.ap-northeast-2.rds.amazonaws.com',
-    user: 'admin',
-    password: '3gca1901217',
-    port: 3309,
-    // database: 'user'
-})
-
 app.use(express.static(path.join(__dirname, '/static')));
 
 app.get('/', (req, res) => {
@@ -21,14 +13,23 @@ app.get('/', (req, res) => {
 })
 
 app.post('/query', (req, res) => {
-    connection.connect((err) => {
-        if (err) console.error(err);
-    });
-    connection.query('CREATE DATABASE log;', (err, result, fields) => {
+    const connection = mysql.createConnection({
+        host: 'cg.crrlhtxhb1el.ap-northeast-2.rds.amazonaws.com',
+        user: 'admin',
+        password: '3gca1901217',
+        port: 3309,
+        // database: 'user'
+    })
+    
+    const query = JSON.parse(req.headers.params).query;
+    console.log(`Query : ${query}`)
+    
+    connection.query(query, (err, result, fields) => {
         if (err) {
-            console.error(err);
+            res.status(501).json(err);
         } else {
-            console.log(result);
+            console.log(`Result : ${result}`)
+            res.status(200).json(result);
         }
     });
 
