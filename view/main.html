@@ -12,7 +12,7 @@
             align-items: center;
             justify-content: center;
         }
-        input[type="text"] {
+        textarea[name="query"] {
             width: 700px;
             padding: 15px;
             box-sizing: border-box;
@@ -26,6 +26,7 @@
         }
         .output {
             white-space: nowrap;
+            list-style: none;
         }
     </style>
     <title>Mariad DB Query Test Page</title>
@@ -33,8 +34,10 @@
 <body>
     <div class="wrap">
         <form id="submit-form">
-            <p class="output">>> outbput <br></p>
-            <input type="text" id="submit-form-query" name="query" autofocus>
+            <ul class="output">
+                <li>>> outbput</li>
+            </ul>
+            <textarea id="submit-form-query" name="query" autofocus></textarea>
             <br>
             <input type="submit" value="Submit">
         </form>

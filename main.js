@@ -12,29 +12,32 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '/view/main.html'));
 })
 
+const connection = mysql.createConnection({
+    host: 'cg.crrlhtxhb1el.ap-northeast-2.rds.amazonaws.com',
+    user: 'admin',
+    password: '3gca1901217',
+    port: 3309,
+    // database: 'user'
+})
+
 app.post('/query', (req, res) => {
-    const connection = mysql.createConnection({
-        host: 'cg.crrlhtxhb1el.ap-northeast-2.rds.amazonaws.com',
-        user: 'admin',
-        password: '3gca1901217',
-        port: 3309,
-        // database: 'user'
-    })
     
     const query = JSON.parse(req.headers.params).query;
     console.log(`Query : ${query}`)
     
     connection.query(query, (err, result, fields) => {
         if (err) {
+            console.log('Error >>');
+            console.error(err);
             res.status(501).json(err);
         } else {
-            console.log(`Result : ${result}`)
+            console.log('Result >>')
+            console.dir(result);
             res.status(200).json(result);
         }
     });
-
-    connection.end();
 })
+// connection.end();
 
 app.listen(PORT_NUMBER, () => {
     console.log(`Express app listen on ${PORT_NUMBER}`)
