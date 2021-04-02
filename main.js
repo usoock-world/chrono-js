@@ -17,7 +17,6 @@ const connection = mysql.createConnection({
     user: 'admin',
     password: '3gca1901217',
     port: 3309,
-    // database: 'user'
 })
 
 app.post('/query', (req, res) => {
@@ -36,6 +35,11 @@ app.post('/query', (req, res) => {
             res.status(200).json(result);
         }
     });
+})
+
+app.post('/', (req, res) => {
+    console.log(req);
+    res.json({ author: "system", contents: "Thank you!!" });
 })
 // connection.end();
 
