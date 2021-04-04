@@ -7,6 +7,8 @@ const PORT_NUMBER = SERVER_CONFIG['port-number'];
 const mysql = require('mysql');
 
 app.use(express.static(path.join(__dirname, '/static')));
+app.use(express.json());
+app.use(express.urlencoded({ extended : false }));
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '/view/main.html'));
@@ -38,10 +40,14 @@ app.post('/query', (req, res) => {
 })
 
 app.post('/', (req, res) => {
-    console.log(req);
-    res.json({ author: "system", contents: "Thank you!!" });
+    console.dir(req.get('content-type'));
+    console.dir(req.body);
+    const json = JSON.stringify({
+        author: 'usw',
+        contents: 'ususw'
+    })
+    res.send(json);
 })
-// connection.end();
 
 app.listen(PORT_NUMBER, () => {
     console.log(`Express app listen on ${PORT_NUMBER}`)
